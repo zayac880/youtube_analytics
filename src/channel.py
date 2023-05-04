@@ -3,7 +3,7 @@ import json
 from googleapiclient.discovery import build
 
 # Ключ API для работы с ютуб
-api_key = 'AIzaSyAEaqHuKuD9q5oK4faLZ0BBvwW8RE_Dn08'
+api_key = 'AIzaSyAE........'
 
 class Channel:
     """Класс для ютуб-канала"""
