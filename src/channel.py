@@ -12,7 +12,10 @@ class Channel:
         """Инициализирует id канала."""
         self.channel_id = channel_id
         self.title = None
+        self.description = None
         self.video_count = None
+        self.subscriber_count = None
+        self.view_count = None
         self.url = None
 
         self._fetch_data()
@@ -20,7 +23,10 @@ class Channel:
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         print(f"Название канала: {self.title}")
+        print(f"Описание канала: {self.description}")
         print(f"Количество видео: {self.video_count}")
+        print(f"Количество подписчиков: {self.subscriber_count}")
+        print(f"Количество просмотров: {self.view_count}")
         print(f"Ссылка на канал: {self.url}")
 
     @classmethod
@@ -34,8 +40,11 @@ class Channel:
         data = {
             'channel_id': self.channel_id,
             'title': self.title,
+            'description': self.description,
             'url': self.url,
             'video_count': self.video_count,
+            'subscriber_count': self.subscriber_count,
+            'view_count': self.view_count,
         }
         with open(filename, 'w') as f:
             json.dump(data, f)
@@ -54,4 +63,7 @@ class Channel:
         channel = response['items'][0]
         self.title = channel['snippet']['title']
         self.url = f"https://www.youtube.com/channel/{self.channel_id}"
+        self.description = channel['snippet']['description']
+        self.subscriber_count = channel['statistics']['subscriberCount']
         self.video_count = channel['statistics']['videoCount']
+        self.view_count = channel['statistics']['viewCount']
