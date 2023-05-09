@@ -6,6 +6,7 @@ from googleapiclient.discovery import build
 # Ключ API для работы с ютуб
 api_key = os.environ.get('API_KEY')
 
+
 class Channel:
     """Класс для ютуб-канала"""
     def __init__(self, channel_id: str,) -> None:
@@ -19,6 +20,34 @@ class Channel:
         self.url = None
 
         self._fetch_data()
+
+    def __str__(self):
+        """Метод для отображения информации"""
+        return f'{self.title} ({self.url})'
+
+    def __add__(self, other):
+        """Метод для операции сложения"""
+        return int(self.subscriber_count) + int(other.subscriber_count)
+
+    def __sub__(self, other):
+        """Метод для операции вычитания"""
+        return int(self.subscriber_count) - int(other.subscriber_count)
+
+    def __lt__(self, other):
+        """Метод для операции сравнения «меньше»"""
+        return int(self.subscriber_count) < int(other.subscriber_count)
+
+    def __le__(self, other):
+        """Метод для операции сравнения «меньше или равно»"""
+        return int(self.subscriber_count) <= int(other.subscriber_count)
+
+    def __gt__(self, other):
+        """Метод для операции сравнения «больше»"""
+        return int(self.subscriber_count) > int(other.subscriber_count)
+
+    def __ge__(self, other):
+        """Метод для операции сравнения «больше или равно»"""
+        return int(self.subscriber_count) >= int(other.subscriber_count)
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
