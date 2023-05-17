@@ -9,7 +9,7 @@ api_key = os.environ.get('API_KEY')
 
 class Channel:
     """Класс для ютуб-канала"""
-    def __init__(self, channel_id: str,) -> None:
+    def __init__(self, channel_id: str,):
         """Инициализирует id канала."""
         self.channel_id = channel_id
         self.title = None
@@ -49,7 +49,7 @@ class Channel:
         """Метод для операции сравнения «больше или равно»"""
         return int(self.subscriber_count) >= int(other.subscriber_count)
 
-    def print_info(self) -> None:
+    def print_info(self):
         """Выводит в консоль информацию о канале."""
         print(f"Название канала: {self.title}")
         print(f"Описание канала: {self.description}")
