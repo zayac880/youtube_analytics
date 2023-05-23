@@ -4,6 +4,7 @@ from src.playlist import PlayList
 
 if __name__ == '__main__':
     pl = PlayList('PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb')
+    print(str(pl.title))
     assert pl.title == "Редакция. АнтиТревел"
     assert pl.url == "https://www.youtube.com/playlist?list=PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb"
 

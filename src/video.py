@@ -40,7 +40,7 @@ class Video:
         # Извлечение данных из ответа API и сохранение в атрибутах экземпляра
         video_response = response['items'][0]
         self.title = video_response['snippet']['title']
-        self.url = f"https://www.youtube.com/channel/{self.video_id}"
+        self.url = f"https://www.youtube.com/video/{self.video_id}"
         self.view_count = video_response['statistics']['viewCount']
         self.like_count = video_response['statistics']['likeCount']
 

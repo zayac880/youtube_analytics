@@ -63,7 +63,7 @@ playlist_videos = youtube.playlistItems().list(playlistId=playlist_id,
 
 # получить все id видеороликов из плейлиста
 video_ids: list[str] = [video['contentDetails']['videoId'] for video in playlist_videos['items']]
-# print(video_ids)
+
 
 
 '''
@@ -75,11 +75,11 @@ video_response = youtube.videos().list(part='contentDetails,statistics',
                                        ).execute()
 # printj(video_response)
 
-for video in video_response['items']:
+#for video in video_response['items']:
     # YouTube video duration is in ISO 8601 format
-    iso_8601_duration = video['contentDetails']['duration']
-    duration = isodate.parse_duration(iso_8601_duration)
-    print(duration)
+    #iso_8601_duration = video['contentDetails']['duration']
+    #duration = isodate.parse_duration(iso_8601_duration)
+    #print(duration)
 
 
 '''
@@ -93,7 +93,7 @@ video_id = '4jRSy-_CLFg'  # Редакция плейлист анти-трев�
 video_response = youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
                                        id=video_id
                                        ).execute()
-# printj(video_response)
+printj(video_response)
 video_title: str = video_response['items'][0]['snippet']['title']
 view_count: int = video_response['items'][0]['statistics']['viewCount']
 like_count: int = video_response['items'][0]['statistics']['likeCount']
