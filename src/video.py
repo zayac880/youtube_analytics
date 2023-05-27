@@ -31,18 +31,27 @@ class Video:
         """Получает данные о канале через YouTube API."""
         youtube_service = self.get_service()
 
-        # Запрос на получение данных о видео
-        response = youtube_service.videos().list(
-            part='snippet,statistics,contentDetails,topicDetails',
-            id=self.video_id
-        ).execute()
+        try:
+            # Запрос на получение данных о видео
+            response = youtube_service.videos().list(
+                part='snippet,statistics,contentDetails,topicDetails',
+                id=self.video_id
+            ).execute()
 
-        # Извлечение данных из ответа API и сохранение в атрибутах экземпляра
-        video_response = response['items'][0]
-        self.title = video_response['snippet']['title']
-        self.url = f"https://www.youtube.com/video/{self.video_id}"
-        self.view_count = video_response['statistics']['viewCount']
-        self.like_count = video_response['statistics']['likeCount']
+            # Извлечение данных из ответа API и сохранение в атрибутах экземпляра
+            video_response = response['items'][0]
+            self.title = video_response['snippet']['title']
+            self.url = f"https://www.youtube.com/video/{self.video_id}"
+            self.view_count = video_response['statistics']['viewCount']
+            self.like_count = video_response['statistics']['likeCount']
+
+        except:
+            # Если пользователь передал id, с которым невозможно получить данные о видео по API,
+            # то у экземпляра инициализируется только свойство video_id
+            self.title = None
+            self.url = None
+            self.view_count = None
+            self.like_count = None
 
 
 class PLVideo(Video):
